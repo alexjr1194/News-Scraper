@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 
 var connection = require('./config/connection.js');
 
+mongoose.Promise = Promise;
 
 app.set('views', './views');
 app.engine('hbs', exphbs({
@@ -24,7 +25,7 @@ app.engine('hbs', exphbs({
 app.set('view engine', '.hbs');
 
 var htmlRoutes = require('./routes/html-routes.js')(app);
-
+var apiRoutes = require('./routes/api-routes.js')(app);
 
 app.listen(port, function (err) {
   if (err) {

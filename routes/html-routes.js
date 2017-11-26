@@ -2,7 +2,7 @@ var db = require('../models');
 
 module.exports = function (app) {
   app.get('/', function (req, res) {
-    db.Article.findAll({
+    db.Article.find({
       saved: false
     }, function (err, doc) {
       if (err) {
@@ -15,7 +15,7 @@ module.exports = function (app) {
   });
 
   app.get('/saved', function (req, res) {
-    db.Article.FindAll({
+    db.Article.find({
       saved: true
     }).populate('notes', 'body').exec(function (err, doc) {
       if (err) {
